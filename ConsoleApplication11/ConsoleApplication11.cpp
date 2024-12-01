@@ -6,10 +6,9 @@ int main() {
     const int SIZE = 1000;
     int array[SIZE];
     for (int i = 0; i < SIZE; ++i) {
-        array[i] = rand() % 61 - 30; // Генерируем числа от -30 до 30
+        array[i] = rand() % 61 - 30;
     }
 
-    // Копируем массив для разных сортировок
     int array_stupid[SIZE], array_gnome[SIZE], array_bubble[SIZE];
     for (int i = 0; i < SIZE; ++i) {
         array_stupid[i] = array[i];
@@ -17,7 +16,6 @@ int main() {
         array_bubble[i] = array[i];
     }
 
-    // Stupid Sort
     int iterations_stupid = 0;
     bool sorted = false;
     while (!sorted) {
@@ -31,7 +29,6 @@ int main() {
         }
     }
 
-    // Gnome Sort
     int iterations_gnome = 0;
     int index = 0;
     while (index < SIZE) {
@@ -44,7 +41,6 @@ int main() {
         }
     }
 
-    // Bubble Sort
     int iterations_bubble = 0;
     for (int i = 0; i < SIZE - 1; ++i) {
         for (int j = 0; j < SIZE - i - 1; ++j) {
@@ -55,10 +51,8 @@ int main() {
         }
     }
 
-    // Вывод статистики
     cout << "Stupid Sort iterations: " << iterations_stupid << endl;
     cout << "Gnome Sort iterations: " << iterations_gnome << endl;
     cout << "Bubble Sort iterations: " << iterations_bubble << endl;
 
-    return 0;
 }
