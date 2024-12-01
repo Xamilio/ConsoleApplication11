@@ -1,20 +1,64 @@
 #include <iostream>
+
 using namespace std;
 
-int main()
-{
-	setlocale(LC_ALL, "ru");
-	int x;
-	cout << "Enter x: ";
-	cin >> x;
-	int res = x;
-	int zal = 0;
-	while (x != 0)
-	{
-		res = x;
-		zal = x % 2;
-		x = x / 2;
-		cout << res << " / " << 2 << " = " << x << " �������: " << zal << endl;
-		
-	}
+int main() {
+    const int SIZE = 1000;
+    int array[SIZE];
+    for (int i = 0; i < SIZE; ++i) {
+        array[i] = rand() % 61 - 30; // Генерируем числа от -30 до 30
+    }
+
+    // Копируем массив для разных сортировок
+    int array_stupid[SIZE], array_gnome[SIZE], array_bubble[SIZE];
+    for (int i = 0; i < SIZE; ++i) {
+        array_stupid[i] = array[i];
+        array_gnome[i] = array[i];
+        array_bubble[i] = array[i];
+    }
+
+    // Stupid Sort
+    int iterations_stupid = 0;
+    bool sorted = false;
+    while (!sorted) {
+        sorted = true;
+        for (int i = 0; i < SIZE - 1; ++i) {
+            iterations_stupid++;
+            if (array_stupid[i] > array_stupid[i + 1]) {
+                swap(array_stupid[i], array_stupid[i + 1]);
+                sorted = false;
+            }
+        }
+    }
+
+    // Gnome Sort
+    int iterations_gnome = 0;
+    int index = 0;
+    while (index < SIZE) {
+        iterations_gnome++;
+        if (index == 0 || array_gnome[index] >= array_gnome[index - 1]) {
+            index++;
+        } else {
+            swap(array_gnome[index], array_gnome[index - 1]);
+            index--;
+        }
+    }
+
+    // Bubble Sort
+    int iterations_bubble = 0;
+    for (int i = 0; i < SIZE - 1; ++i) {
+        for (int j = 0; j < SIZE - i - 1; ++j) {
+            iterations_bubble++;
+            if (array_bubble[j] > array_bubble[j + 1]) {
+                swap(array_bubble[j], array_bubble[j + 1]);
+            }
+        }
+    }
+
+    // Вывод статистики
+    cout << "Stupid Sort iterations: " << iterations_stupid << endl;
+    cout << "Gnome Sort iterations: " << iterations_gnome << endl;
+    cout << "Bubble Sort iterations: " << iterations_bubble << endl;
+
+    return 0;
 }
