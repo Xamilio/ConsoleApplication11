@@ -5,8 +5,10 @@ using namespace std;
 int main() {
     const int SIZE = 1000;
     int array[SIZE];
+    int max = 30;
+    int min = -30;
     for (int i = 0; i < SIZE; ++i) {
-        array[i] = rand() % 61 - 30;
+        array[i] = rand() % (max - min) + min;
     }
 
     int stupid[SIZE], gnome[SIZE], bubble[SIZE];
